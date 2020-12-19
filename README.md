@@ -2,7 +2,7 @@
 ## PJ105
 <img src="images/PJ105-front.jpg" style="display: inline-block;" width="400"><img src="images/PJ105-back.jpg" style="display: inline-block;" width="400">
 
-The PJ105 module is a 29.9x25.6mm open-source, stand-alone, programmable phto-resistor light sensor based on ATtiny85 with [PJON](https://github.com/gioblu/PJON/) over [PJDL](https://github.com/gioblu/PJON/blob/master/src/strategies/SoftwareBitBang/specification) networking. It needs only 3 pins (PJDL, 5v, GND) to operate transmitting samples and receiving incoming configuration on the same PJON IO pin.
+The PJ105 module is a 29.9x25.6mm open-source, stand-alone, programmable phto-resistor light sensor based on ATtiny85 with [PJON](https://github.com/gioblu/PJON/) over [PJDL](https://github.com/gioblu/PJON/blob/master/src/strategies/SoftwareBitBang/specification) networking. It needs only 3 pins (PJDL, 5v, GND) to operate transmitting samples and receiving incoming configuration on the same PJON IO pin. PJ105 consumes around 0.165w when powered with 9v.
 
 ```cpp  
  _______   _______   _______
@@ -34,6 +34,31 @@ A basic example program is proposed to let users easily configure the PJ105s usi
 - `Q` For security reasons it is possible to block incoming configuration, although further configuration is possible flashing the [PJ105](software/PJ105/PJ105.ino) sketch on the ATtiny85 using an ISP programmer.
 
 The ATtiny85 must to be flashed with the [PJ105](software/PJ105/PJ105.ino) sketch using an ISP programmer, see [ATtiny85 interfacing](https://github.com/gioblu/PJON/wiki/ATtiny-interfacing)
+
+### How to install the software
+The software is relatively easy to install:
+- Follow [High-Low Tech tutorial](http://highlowtech.org/?p=1695) by David Mellis and install the required software.  
+- Locate the Arduino IDE `boards.txt` file (in Windows is in `C:\Users\your-user-name\AppData\Local\Arduino15\packages\attiny\hardware\avr\1.0.1`)
+- Add the code below at the end of the file and save it
+```
+attiny.menu.clock.external16BOD=PJON PJ100 modules
+attiny.menu.clock.external16BOD.bootloader.low_fuses=0xfe
+attiny.menu.clock.external16BOD.bootloader.high_fuses=0xdc
+attiny.menu.clock.external16BOD.bootloader.extended_fuses=0xff
+attiny.menu.clock.external16BOD.build.f_cpu=16000000L
+```
+- Open the Arduino IDE
+- Program an Arduino with the ArduinoISP example
+- Connect the Arduino to the ATtiny85 as described in the [High-Low Tech tutorial](http://highlowtech.org/?p=1695)
+- Connect a 16MHz oscillator to the ATtiny85 to program it successfully
+- Select Tools->Board->ATtiny
+- Select Tools->Processor->ATtiny85
+- Select Tools->Clock->PJON PJ100 modules
+- Select Tools->Burn bootloader
+- Open PJ105.ino
+- Upload the program
+
+The chip should be good to go.
 
 ### Schematic
 The circuit is quite simple and can be tested quickly on a breadboard. It is composed by few components such as the MCU, its clock, the voltage regulator, a couple of resistors, capacitors and obviously the MQ2 sensor.
