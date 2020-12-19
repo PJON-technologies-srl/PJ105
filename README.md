@@ -2,7 +2,7 @@
 ## PJ105
 <img src="images/PJ105-front.jpg" style="display: inline-block;" width="400"><img src="images/PJ105-back.jpg" style="display: inline-block;" width="400">
 
-The PJ105 module is a 29.9x25.6mm open-source, stand-alone, programmable phto-resistor light sensor based on ATtiny85 with [PJON](https://github.com/gioblu/PJON/) over [PJDL](https://github.com/gioblu/PJON/blob/master/src/strategies/SoftwareBitBang/specification) networking. It needs only 3 pins (PJDL, 5v, GND) to operate transmitting samples and receiving incoming configuration on the same PJON IO pin. PJ105 consumes around 0.165w when powered with 9v.
+[PJ105](https://www.pjon-technologies.com/collections/pj100-hardware/products/copia-del-pjon-sensor-105) is a 29.9x25.6mm open-source, stand-alone, programmable phto-resistor light sensor based on ATtiny85 with [PJON](https://github.com/gioblu/PJON/) over [PJDL](https://github.com/gioblu/PJON/blob/master/src/strategies/SoftwareBitBang/specification) networking. It needs only 3 pins (PJDL, 5v, GND) to operate transmitting samples and receiving incoming configuration on the same PJON IO pin. [PJ105](https://www.pjon-technologies.com/collections/pj100-hardware/products/copia-del-pjon-sensor-105) consumes around 0.165w when powered with 9v.
 
 ```cpp  
  _______   _______   _______
@@ -13,9 +13,9 @@ ____|||_______|||_______|||______ SoftwareBitBang bus
 _____||________||________||______ +9v
 ______|_________|_________|______ GND
 ```
-Multiple PJ105s can be connected in parallel on the same [SoftwareBitBang](https://github.com/gioblu/PJON/tree/master/src/strategies/SoftwareBitBang) bus sharing the same power, ground and data connection. Each PJ105 is running an instance of the PJON protocol stack with its own configurable device id, so many can coexist on the same medium.
+Multiple PJ105s can be connected in parallel on the same [SoftwareBitBang](https://github.com/gioblu/PJON/tree/master/src/strategies/SoftwareBitBang) bus sharing the same power, ground and data connection. Each [PJ105](https://www.pjon-technologies.com/collections/pj100-hardware/products/copia-del-pjon-sensor-105) is running an instance of the PJON protocol stack with its own configurable device id, so many can coexist on the same medium.
 
-PJ105 has been engineered with the strong feeling that in the future "smart homes" will not necessarily host an embedded real-time operative system in whatever "thing" and expose vulnerabilities out of their physical boundaries. Otherwise, more probably, they will host many less power-hungry microcontrollers connected to a wired communication bus.
+[PJ105](https://www.pjon-technologies.com/collections/pj100-hardware/products/copia-del-pjon-sensor-105) has been engineered with the strong feeling that in the future "smart homes" will not necessarily host an embedded real-time operative system in whatever "thing" and expose vulnerabilities out of their physical boundaries. Otherwise, more probably, they will host many less power-hungry microcontrollers connected to a wired communication bus.
 
 ### Software
 A basic example program is proposed to let users easily configure the PJ105s using only a series of commands on its PJON [SoftwareBitBang](https://github.com/gioblu/PJON/tree/master/src/strategies/SoftwareBitBang) bus to avoid flashing the chip multiple times. With the [Console](software/Console/Console.ino) example and an Arduino compatible device it is possible to input configuration and request samples with an easy to use console interface. PJ105 accepts incoming requests if sent by `PJON_MASTER_ID` and its configured recipient id.
@@ -32,8 +32,6 @@ A basic example program is proposed to let users easily configure the PJ105s usi
 |  `X` Configuration reset         | none          | Sets configuration to default                                     |
 
 - `Q` For security reasons it is possible to block incoming configuration, although further configuration is possible flashing the [PJ105](software/PJ105/PJ105.ino) sketch on the ATtiny85 using an ISP programmer.
-
-The ATtiny85 must to be flashed with the [PJ105](software/PJ105/PJ105.ino) sketch using an ISP programmer, see [ATtiny85 interfacing](https://github.com/gioblu/PJON/wiki/ATtiny-interfacing)
 
 ### How to upload the software
 The software is relatively easy to install:
@@ -55,10 +53,20 @@ attiny.menu.clock.external16BOD.build.f_cpu=16000000L
 - Select Tools->Processor->ATtiny85
 - Select Tools->Clock->PJON PJ100 modules
 - Select Tools->Burn bootloader
-- Open PJ105.ino
+- Open `PJ105.ino`
 - Upload the program
+- Insert the ATtiny85 in the socket 
 
-The chip should be good to go.
+[PJ105](https://www.pjon-technologies.com/collections/pj100-hardware/products/copia-del-pjon-sensor-105) should be ready for use
+
+### How to configure it
+With the [Console](software/Console/Console.ino) example and an Arduino compatible device it is possible to input configuration and request samples with an easy to use console interface:
+
+- Program an Arduino with `Console.ino`
+- Connect the [PJ105](https://www.pjon-technologies.com/collections/pj100-hardware/products/copia-del-pjon-sensor-105) with the arduino 
+- Open the serial monitor
+
+You should now be able to communicate with [PJ105](https://www.pjon-technologies.com/collections/pj100-hardware/products/copia-del-pjon-sensor-105) using the commands described in the software section.
 
 ### Schematic
 The circuit is quite simple and can be tested quickly on a breadboard. It is composed by few components such as the MCU, its clock, the voltage regulator, a couple of resistors, capacitors and obviously the MQ2 sensor.
