@@ -38,7 +38,7 @@ void receiver_function(uint8_t *payload, uint16_t length, const PJON_Packet_Info
     uint16_t v = (uint16_t)((payload[0] << 8) | (payload[1] & 0xFF));
     Serial.print("Photo-resistor analog read value: ");
     Serial.print(v);
-    Serial.print("Photo-resistor voltage: ");
+    Serial.print(" Photo-resistor voltage: ");
     Serial.println((v / 1023.0) * 5.0);
   }
 };
@@ -68,7 +68,7 @@ void print_help() {
   Serial.println("E!        -> Request a photo-resistor reading");
   Serial.println("I1-254!   -> Configure module id");
   Serial.println("R0-255!   -> Configure recipient id");
-  Serial.println("T0-65535! -> Configure state change interval");
+  Serial.println("T0-65535! -> Configure transmission interval");
   Serial.println("Q!        -> Block incoming configuration (caution)");
   Serial.println("X!        -> Configuration reset");
   Serial.println();
