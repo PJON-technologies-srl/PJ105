@@ -35,9 +35,9 @@ A basic example program is proposed to let users easily configure the PJ105s usi
 
 The ATtiny85 must to be flashed with the [PJ105](software/PJ105/PJ105.ino) sketch using an ISP programmer, see [ATtiny85 interfacing](https://github.com/gioblu/PJON/wiki/ATtiny-interfacing)
 
-### How to install the software
+### How to upload the software
 The software is relatively easy to install:
-- Follow [High-Low Tech tutorial](http://highlowtech.org/?p=1695) by David Mellis and install the required software.  
+- Follow [High-Low Tech tutorial](http://highlowtech.org/?p=1695) by David Mellis and install the required software
 - Locate the Arduino IDE `boards.txt` file (in Windows is in `C:\Users\your-user-name\AppData\Local\Arduino15\packages\attiny\hardware\avr\1.0.1`)
 - Add the code below at the end of the file and save it
 ```
